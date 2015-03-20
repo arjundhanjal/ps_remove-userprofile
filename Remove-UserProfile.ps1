@@ -1,3 +1,11 @@
+<#
+  Remove-UserProfile.ps1
+  Developed by Arjun Dhanjal
+  v1, March 2015
+
+  Up and coming: network support.
+#>
+
 PARAM(
   [Parameter(Mandatory=$true)]
     [string]$SamAccountName
@@ -7,7 +15,7 @@ PARAM(
 $Domain = [Environment]::UserDomainName
 $CurrentUser = [Environment]::UserName
 
-# Importing the Active Directory PS module 
+# Importing the Active Directory PS module
 Import-Module ActiveDirectory
 
 Try { # Checking to see whether AD user actually exists...
@@ -22,8 +30,8 @@ Try { # Checking to see whether AD user actually exists...
       Write-Host -NoNewLine "Press any key to continue..." -ForegroundColor Red -BackgroundColor Black
       Write-Host "" -ForegroundColor Red -BackgroundColor Black
       $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyUp")
-      exit } 
- 
+      exit }
+
 Write-Host -NoNewLine "SID for user "
 Write-Host -NoNewLine $SamAccountName -ForegroundColor Magenta
 Write-Host -NoNewLine " is "
@@ -41,7 +49,7 @@ Try { Rename-Item C:\Users\$SamAccountName C:\Users\${SamAccountName}.old }
       Write-Host -NoNewLine "Press any key to continue..." -ForegroundColor Red -BackgroundColor Black
       Write-Host "" -ForegroundColor Red -BackgroundColor Black
       $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyUp")
-      exit } 
+      exit }
 
 Write-Host -NoNewLine "Moved "
 Write-Host -NoNewLine "C:\Users\$SamAccountName" -ForegroundColor Green
@@ -53,7 +61,7 @@ Write-Host "... "
 
 Set-Location "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
 
-Try { Rename-Item "$SID" "OLD-$SID" } 
+Try { Rename-Item "$SID" "OLD-$SID" }
 
     Catch { # If no registry key exists, script exits.
       Write-Host -NoNewLine "ERROR: Sorry, cannot find registry key for SID " -ForegroundColor Red -BackgroundColor Black
@@ -62,7 +70,7 @@ Try { Rename-Item "$SID" "OLD-$SID" }
       Write-Host -NoNewLine "Press any key to continue..." -ForegroundColor Red -BackgroundColor Black
       Write-Host "" -ForegroundColor Red -BackgroundColor Black
       $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyUp")
-      exit } 
+      exit }
 
 Write-Host -NoNewLine "Moved "
 Write-Host -NoNewLine "HKLM:\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\ProfileList\$SID" -ForegroundColor Cyan
