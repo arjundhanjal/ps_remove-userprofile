@@ -7,10 +7,13 @@ This script is written to integrate with Active Directory, and thus will only wo
 ## The process
 
 1. Importing the ActiveDirectory module
+
    First, the script imports PowerShell's **ActiveDirectory** module. For this to execute properly, the ActiveDirectory module must be installed on the client computer.
 
 2. Account validation and SID retrieval
+
    The script then takes the username specified in the `-SamAccountName` parameter and queries Active Directory to obtain the account's SID. The user's SID is needed when removing the registry keys associated with the user's profile. In effect, this also checks to see whether or not the user in question exists within Active Directory.
 
 3. Moving files and folders
+
    The script then renames the user's profile folder (located in `C:\Users`), and finally, the  renames the registry keys associated with the user's profile, located at `HKLM:\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\ProfileList`.
