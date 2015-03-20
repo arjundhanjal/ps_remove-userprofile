@@ -8,7 +8,7 @@ This script is written to integrate with Active Directory, and thus will only wo
 
 1. Importing the ActiveDirectory module
 
-   First, the script imports PowerShell's **ActiveDirectory** module. For this to execute properly, the ActiveDirectory module must be installed on the client computer.
+   First, the script imports PowerShell's **ActiveDirectory** module. For this to execute properly, the ActiveDirectory module must be [installed](https://technet.microsoft.com/en-us/magazine/gg413289.aspx) on the client computer.
 
 2. Account validation and SID retrieval
 
