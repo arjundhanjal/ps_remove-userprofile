@@ -22,4 +22,4 @@ This script is written to integrate with Active Directory, and thus will only wo
 
 At this time, the script does not support deleting user profiles over the network. I plan on adding this functionality at some point, but for now, I recommend executing this by first using `Enter-PSSession` to remote into the target computer.
 
-I also plan on adding a `-ForceDelete` (or similar) switch that will force the **deletion** of the user's profile folder and registry keys; for now, the script will just rename them and leave the administrator executing the script to delete the folders manually after they are done migrating data and other information.
+I also plan on adding a `-ForceDelete` (or similar) switch that will force the **deletion** of the user's profile folder and registry keys; for now, the script will just **rename** them and leave the administrator executing the script to delete the folders manually after they are done migrating data and other information.
