@@ -92,5 +92,5 @@ Write-Host -NoNewLine " to "
 Write-Host -NoNewLine "...\OLD-$SID" -ForegroundColor Cyan
 Write-Host "... "
 
-# Set-Location out of registry and into home folder
+# Set-Location out of registry and into user's home folder
 Set-Location "C:\Users\$CurrentUser"
