@@ -22,7 +22,8 @@
 
 PARAM(
   [Parameter(Mandatory=$true)]
-    [string]$SamAccountName
+    [string]$SamAccountName,
+  [switch]$ForceDelete
 )
 
 # Setting up some misc. variables...
@@ -91,6 +92,14 @@ Write-Host -NoNewLine "HKLM:\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Profile
 Write-Host -NoNewLine " to "
 Write-Host -NoNewLine "...\OLD-$SID" -ForegroundColor Cyan
 Write-Host "... "
+
+# Setting the actions for the -ForceDelete switch. Deleting old user folders.
+
+If($ForceDelete){
+  Remove-Item "OLD-$SID"
+  Set-Location "C:\Users"
+  Remove-Item "$SamAccountName.old"
+  }
 
 # Set-Location out of registry and into user's home folder
 Set-Location "C:\Users\$CurrentUser"
