@@ -1,5 +1,5 @@
 <#
-  Remove-UserProfile.ps1 (v1)
+  Remove-UserProfile.ps1 (v2)
   Copyright (C) 2015  Arjun Dhanjal
 
   This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,15 @@ $CurrentUser = [Environment]::UserName
 
 # Importing the Active Directory PS module
 Import-Module ActiveDirectory
+
+If ($SamAccountName -eq $CurrentUser) {
+  Write-Host -NoNewLine "ERROR: Sorry, this script cannot be used to delete your own user profile information." -ForegroundColor Red -BackgroundColor Black
+  Write-Host "Script exiting... " -ForegroundColor Red -BackgroundColor Black
+  Write-Host -NoNewLine "Press any key to continue..." -ForegroundColor Red -BackgroundColor Black
+  Write-Host "" -ForegroundColor Red -BackgroundColor Black
+  $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyUp")
+  exit
+}
 
 Try { # Checking to see whether AD user actually exists...
   # Getting the user's SID which we need to delete/move the registry key associated with the user's profile
