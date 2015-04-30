@@ -42,7 +42,7 @@ If ($SamAccountName -eq $CurrentUser) {
   exit
 }
 
-Try { # Checking to see whether AD user actually exists...
+Try { # Checking to see whether $SamAccountName actually exists in Active Directory...
   # Getting the user's SID which we need to delete/move the registry key associated with the user's profile
   $SID = (Get-ADUser $SamAccountName).SID.Value
 }
